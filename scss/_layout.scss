@@ -1,0 +1,507 @@
+//everything about layout
+
+// =====================================================
+//                        HEADER
+// =====================================================
+
+.header {
+    margin-top: 30px;
+
+    &__nav {
+        display: grid;
+        text-align: center;
+        align-items: center;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas:
+            "logo logo links links links links hamburger";
+        grid-gap: 20px;
+
+        @include mQ(1026px) {
+            grid-template-areas:
+                "logo logo logo  . . hamburger hamburger"
+                "links links links links links links links";
+            grid-gap: 20px;
+        }
+
+        @include mQ(500px) {
+            grid-template-areas:
+                "logo logo logo logo hamburger hamburger hamburger"
+                "links links links links links links links";
+            grid-gap: 20px;
+        }
+    }
+
+    &__logo {
+        grid-area: logo;
+    }
+
+    &__company {
+        font-size: $heading__font-size--medium;
+        font-weight: $base__font-weight--bold;
+        letter-spacing: 0.6px;
+        color: $primary__color;
+        text-decoration: none;
+    }
+
+    &__list {
+        grid-area: links;
+        display: none;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+
+        @include mQ(700px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 1fr);
+            grid-gap: 30px;
+        }
+
+        @include mQ(500px) {
+            margin-top: 30px;
+        }
+    }
+
+    &__list--active {
+        display: grid;
+        grid-area: links;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr;
+        opacity: 1;
+        height: auto;
+        transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+
+        @include mQ(700px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 1fr);
+            grid-gap: 30px;
+        }
+    }
+
+    &__hamburger {
+        grid-area: hamburger;
+    }
+
+    &__list li a {
+        margin: auto 20px;
+        text-decoration: none;
+        font-weight: $base__font-weight--bold;
+        color: $primary__color;
+    }
+}
+
+// =====================================================
+//                        BOX 1
+// =====================================================
+
+.box1 {
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 3%;
+    margin-right: 3%;
+
+    &__title {
+        font-size: $heading__font-size--xl-large;
+        color: $primary__color;
+        margin-bottom: 20px;
+
+        @include mQ(913px) {
+            font-size: $heading__font-size--xl-large - 0.3em;
+        }
+
+        @include mQ(830px) {
+            font-size: $heading__font-size--xl-large - 0.5em;
+        }
+
+        @include mQ(710px) {
+            font-size: $heading__font-size--xl-large - 0.8em;
+        }
+    }
+
+    &__description {
+        font-size: $heading__font-size--small;
+        color: $tertiary__color;
+        margin-bottom: 70px;
+
+        @include mQ(822px) {
+            font-size: $heading__font-size--small - 0.2em;
+        }
+    }
+}
+
+// =====================================================
+//                        BOX 2
+// =====================================================
+
+.box2 {
+
+    &__wrapper {
+        margin: 200px auto;
+        align-items: baseline;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+        position: relative;
+        width: 100%;
+
+        @include mQ(1300px) {
+            margin: 100px auto;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        }
+
+        @include mQ(940px) {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-gap: 20px;
+        }
+
+        @include mQ(720px) {
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        }
+
+        @include mQ(630px) {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        }
+
+        @include mQ(540px) {
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            margin: 70px auto;
+        }
+    }
+
+    &__display:first-child {
+        text-align: right;
+    }
+
+    &__display:nth-child(2) {
+        text-align: center;
+    }
+
+    &__display:last-child {
+        text-align: left;
+
+    }
+
+    &__image {
+        box-shadow: 0px 1px 70px -16px rgba(0, 0, 0, 0.75);
+        translate: .2s;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        @include mQ(1330px) {
+            width: 250px;
+        }
+
+        @include mQ(940px) {
+            width: 200px;
+        }
+
+        @include mQ(720px) {
+            width: 170px;
+        }
+
+        @include mQ(630px) {
+            width: 140px;
+        }
+
+        @include mQ(540px) {
+            width: 110px;
+        }
+    }
+
+    &__image:hover {
+        box-shadow: 0px 1px 70px -16px rgba(0, 0, 0, 0.75);
+        transform: scale(1.1, 1.1);
+        translate: .2s;
+    }
+
+    &__display:nth-child(2) &__image {
+        @include mQ(1330px) {
+            width: 270px;
+        }
+
+        @include mQ(940px) {
+            width: 220px;
+        }
+
+        @include mQ(720px) {
+            width: 190px;
+        }
+
+        @include mQ(630px) {
+            width: 160px;
+        }
+
+        @include mQ(540px) {
+            width: 130px;
+        }
+    }
+}
+
+
+// =====================================================
+//                        BOX 3
+// =====================================================
+
+.box3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @include mQ(700px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &__title {
+        font-size: $heading__font-size--x-large;
+        color: $primary__color;
+        margin-bottom: 20px;
+
+        @include mQ(1150px) {
+            font-size: $heading__font-size--large;
+        }
+
+        @include mQ(900px) {
+            font-size: $heading__font-size--large - 0.5em;
+        }
+    }
+
+    &__description {
+        font-size: $base__font-size;
+        color: $quinary__color;
+        line-height: 36px;
+        margin-bottom: 40px;
+
+        @include mQ(1000px) {
+            line-height: 28px;
+        }
+    }
+
+    &__col:first-child {
+        @include mQ(700px) {
+            grid-area: col-headset;
+            opacity: .3;
+            z-index: -999;
+        }
+    }
+
+    &__col:last-child {
+        margin-left: 50px;
+        margin-right: 10%;
+
+        @include mQ(800px) {
+            margin-right: 3%;
+            margin-left: 30px;
+        }
+
+        @include mQ(700px) {
+            grid-area: col-desc;
+        }
+    }
+
+    &__image {
+        max-width: 100%;
+    }
+
+    &__button {
+        @include mQ(700px) {
+            text-align: center;
+        }
+    }
+}
+
+// =====================================================
+//                        BOX 4
+// =====================================================
+
+.box4 {
+    display: grid;
+    grid-gap: 50px;
+    width: 80%;
+    margin: 0 auto;
+    justify-items: stretch;
+    grid-template-areas:
+        "title title title title title title"
+        "speakers speakers mobile mobile headphones headphones"
+        ". . mobile mobile . ."
+        "activity activity mobile mobile cds cds"
+        ". . mobile mobile . .";
+
+    &__title {
+        text-align: center;
+        font-size: $heading__font-size--x-large;
+        color: $primary__color;
+        margin: 130px auto;
+    }
+
+    &__header {
+        grid-area: title;
+    }
+
+    &__speaker {
+        grid-area: speakers;
+    }
+
+    &__headphones {
+        grid-area: headphones;
+    }
+
+    &__activity {
+        grid-area: activity;
+    }
+
+    &__cd {
+        grid-area: cds;
+    }
+
+    &__display {
+        grid-area: mobile;
+        position: relative;
+    }
+
+    &__display::after {
+        content: "";
+        background: url(../assets/ellipse.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        width: 750px;
+        height: 150px;
+        bottom: -10%;
+        z-index: -1;
+        left: -60%;
+    }
+
+    &__box--title {
+        margin: 20px auto;
+        color: $primary__color;
+        font-size: $heading__font-size--medium;
+    }
+
+    &__box--description {
+        color: $quinary__color;
+        font-size: $base__font-size;
+        line-height: 36px;
+    }
+}
+
+// =====================================================
+//                        BOX 5
+// =====================================================
+
+.box5 {
+    display: grid;
+    margin-top: 150px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    grid-gap: 150px;
+
+    &__power {
+        grid-column: 1/3;
+        margin-left: 20%;
+    }
+
+    &__graphic {
+        grid-column: 3/-1;
+    }
+
+    &__title {
+        font-size: $heading__font-size--x-large;
+        color: $primary__color;
+        margin: 50px auto;
+    }
+
+    &__description {
+        color: $quinary__color;
+        font-size: $base__font-size;
+        line-height: 36px;
+    }
+}
+
+// =====================================================
+//                        BOX 6
+// =====================================================
+
+.box6 {
+    width: 100%;
+    margin: 0 auto;
+
+    background: url(../assets/box_7_background.jpg) no-repeat center center fixed;
+    background-size: 100% 100%;
+
+    &__title {
+        padding-top: 150px;
+        font-size: $heading__font-size--medium;
+        color: $quinary__color;
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &__comment--box {
+        padding: 80px 0px 80px;
+        text-align: center;
+    }
+}
+
+
+// =====================================================
+//                        BOX 7
+// =====================================================
+
+.box7 {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: #030912;
+
+    &__title {
+        font-size: $heading__font-size--x-large;
+        color: $primary__color;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    &__description {
+        color: $quinary__color;
+        font-size: $base__font-size;
+        line-height: 36px;
+        width: 40%;
+        margin: 0 auto 50px;
+    }
+
+    &__image {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    &__button {
+        margin: 60px auto;
+    }
+}
+
+// =====================================================
+//                        FOOTER
+// =====================================================
+
+.footer {
+    padding: 50px;
+    color: $senary__color;
+    background-color: #030912;
+
+    &__nav {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    &__links {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__links a {
+        margin: 0 20px;
+        text-decoration: none;
+        color: $senary__color;
+    }
+
+}

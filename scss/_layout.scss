@@ -317,7 +317,7 @@
     grid-gap: 50px;
     width: 80%;
     margin: 0 auto;
-    justify-items: stretch;
+    // justify-items: stretch;
     grid-template-areas:
         "title title title title title title"
         "speakers speakers mobile mobile headphones headphones"
@@ -325,11 +325,42 @@
         "activity activity mobile mobile cds cds"
         ". . mobile mobile . .";
 
+    @include mQ(1500px) {
+        grid-gap: 30px;
+    }
+
+    @include mQ(1375px) {
+        grid-template-areas:
+            "title title title title title title"
+            "speakers speakers speakers headphones headphones headphones"
+            ". . mobile mobile . ."
+            ". . mobile mobile . ."
+            "activity activity activity cds cds cds";
+        grid-gap: 70px;
+    }
+
+    @include mQ(600px) {
+        grid-template-areas:
+            "title title title title title title"
+            "speakers speakers speakers headphones headphones headphones"
+            ". mobile mobile mobile mobile ."
+            ". . mobile mobile . ."
+            "activity activity activity cds cds cds";
+        grid-gap: 40px;
+        text-align: center;
+    }
+
     &__title {
         text-align: center;
         font-size: $heading__font-size--x-large;
         color: $primary__color;
         margin: 130px auto;
+        @include mQ(600px) {
+            margin-bottom: 40px;
+            font-size: $heading__font-size--large;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 51, 52, .7);
+        }
     }
 
     &__header {
@@ -352,9 +383,19 @@
         grid-area: cds;
     }
 
+    &__mobile {
+        @include mQ(790px) {
+            width: 250px;
+        }
+    }
+
     &__display {
         grid-area: mobile;
         position: relative;
+
+        @include mQ(1375px) {
+            margin-bottom: 20%;
+        }
     }
 
     &__display::after {
@@ -367,6 +408,18 @@
         bottom: -10%;
         z-index: -1;
         left: -60%;
+
+        @include mQ(790px) {
+            width: 560px;
+            height: 154px;
+            bottom: -13%;
+        }
+        @include mQ(550px) {
+            width: 469px;
+            height: 154px;
+            bottom: -13%;
+            left: -45%;
+        }
     }
 
     &__box--title {
@@ -389,29 +442,53 @@
 .box5 {
     display: grid;
     margin-top: 150px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     align-items: center;
     grid-gap: 150px;
+    @include mQ(1300px) {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    @include mQ(1200px) {
+        grid-template-columns: 1fr;
+        grid-auto-rows: repeat(2, 1fr);
+        grid-gap: 20px;
+        margin-top: 100px;
+    }
 
     &__power {
         grid-column: 1/3;
         margin-left: 20%;
+        @include mQ(1200px) {
+            text-align: center;
+            margin: 5%;
+            grid-column: 1/-1;
+        }
     }
 
     &__graphic {
         grid-column: 3/-1;
+        @include mQ(1200px) {
+            grid-column: 1/-1;
+        }
     }
 
     &__title {
         font-size: $heading__font-size--x-large;
         color: $primary__color;
         margin: 50px auto;
+        @include mQ(600px) {
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 51, 52, .7);
+        }
     }
 
     &__description {
         color: $quinary__color;
         font-size: $base__font-size;
         line-height: 36px;
+    }
+    &__image {
+        width: 100%;
     }
 }
 
@@ -433,6 +510,9 @@
         width: 60%;
         margin: 0 auto;
         text-align: center;
+        @include mQ(600px) {
+            font-size: $heading__font-size--medium - 0.5em;
+        }
     }
 
     &__comment--box {
@@ -458,6 +538,11 @@
         color: $primary__color;
         margin-top: 50px;
         margin-bottom: 50px;
+        @include mQ(650px) {
+            font-size: $heading__font-size--large - 0.3em;
+            margin: 0px 2%;
+            padding: 8% 0%;
+        }
     }
 
     &__description {
@@ -466,6 +551,12 @@
         line-height: 36px;
         width: 40%;
         margin: 0 auto 50px;
+        @include mQ(850px) {
+            width: 60%;
+        }
+        @include mQ(650px) {
+            width: 80%;
+        }
     }
 
     &__image {
@@ -496,12 +587,17 @@
     &__links {
         display: flex;
         justify-content: space-evenly;
+        @include mQ(950px) {
+            width: 80%;
+            padding-bottom: 10px;
+        }
     }
 
     &__links a {
         margin: 0 20px;
         text-decoration: none;
         color: $senary__color;
+        text-align: center;
     }
 
 }

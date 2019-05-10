@@ -11,6 +11,8 @@ import {
     showNav
 } from "./showNavbar.js"
 
+import "./../scss/main.scss" //webpack sass
+
 
 changeComment(); //box6 function to show comments
 setInterval(playWave, 220); //box2 wave function

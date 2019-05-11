@@ -34,7 +34,7 @@ module.exports = function (env) {
           use: [{
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '../',
+                publicPath: './',
                 hmr: process.env.NODE_ENV === 'development',
               },
             },
@@ -57,7 +57,7 @@ module.exports = function (env) {
           use: [{
             loader: 'file-loader',
             options: {
-              outputPath: 'assets/',
+              outputPath: './assets',
               name: '[name].[ext]',
             },
           }, ]

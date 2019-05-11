@@ -2,74 +2,83 @@ const {
   resolve
 } = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require("autoprefixer");
+const webpack = require('webpack');
 
-module.exports = {
+module.exports = function (env) {
 
-  entry: "./src/js/app.js",
-  output: {
-    path: resolve(__dirname, "dist"),
-    filename: "bundle.js"
-  },
-  module: {
-    rules: [{
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
+  var prod = env !== undefined && env.production === true;
+  var dev = env !== undefined && env.production === true;
+
+  return {
+
+    entry: "./src/js/app.js",
+    output: {
+      path: resolve(__dirname, "dist"),
+      filename: prod ? "[name].[chunkhash].js" : "[name].js",
+    },
+    module: {
+      rules: [{
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
           }
-        }
-      },
-      // {
-      //   test: /\.scss$/,
-      //   use: [
-      //     "style-loader", // creates style nodes from JS strings
-      //     "css-loader", // translates CSS into CommonJS
-      //     "sass-loader" // compiles Sass to CSS, using Node Sass by default
-      //   ]
-      // },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [{
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: '../',
-                    hmr: process.env.NODE_ENV === 'development',
-                },
+        },
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [{
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../',
+                hmr: process.env.NODE_ENV === 'development',
+              },
             },
             'css-loader',
+            'postcss-loader',
             'sass-loader'
-        ],
+          ],
+        },
+        {
+          test: /\.(html)$/,
+          use: {
+            loader: 'html-loader',
+            options: {
+              attrs: [':src']
+            }
+          }
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/',
+              name: '[name].[ext]',
+            },
+          }, ]
+        },
+      ]
     },
-    {
-      test: /\.(html)$/,
-      use: {
-        loader: 'html-loader',
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: prod ? "style.[chunkhash].css" : "style.css",
+        chunkFilename: '[id].css',
+      }),
+      new webpack.LoaderOptionsPlugin({
         options: {
-          attrs: [':src']
+          postcss: [
+            autoprefixer()
+          ]
         }
-      }
-    },
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            outputPath: 'assets/',
-            name: '[name].[ext]',
-          },
-        }, ]
-      },
+      }),
+      new HtmlWebpackPlugin({
+        template: "./src/index.html"
+      })
     ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-        filename: "style.css",
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
-  ]
+  }
 }

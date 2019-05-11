@@ -35,6 +35,10 @@
   @include mQ(540px) {
     height: 210px;
   }
+  @include mQ(420px) {
+    margin-top: 8%;
+    height: 110px;
+  }
 }
 
 .line {

@@ -7,11 +7,6 @@ const show = elem => {
 };
 
 const hide = elem => {
-    elem.style.height = elem.scrollHeight + 'px';
-    window.setTimeout(function () {
-        elem.style.height = '0';
-    }, 1);
-
     window.setTimeout(function () {
         elem.classList.remove('header__list--active');
         elem.classList.add('header__list');

@@ -2,5 +2,6 @@ export const Elements = {
     hamburger: document.querySelector(".hamburger"),
     headerLinks: document.querySelector(".header__list"),
     waveLines: [...document.querySelectorAll('.wave div')],
-    copyYear: document.querySelector('.span--year')
+    copyYear: document.querySelector('.span--year'),
+    navBar: document.querySelector('.header')
 }

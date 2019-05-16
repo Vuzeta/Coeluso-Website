@@ -5,7 +5,32 @@
 // =====================================================
 
 .header {
-    margin-top: 30px;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 20px 0px;
+    box-shadow: 0 8px 6px -6px black;
+    transition: .2s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 1);
+        transition: .2s;
+        padding: 25px 0px;
+    }
+
+    @include mQ(700px) {
+        padding: 15px 20px 10px;
+        background-color: rgba(0, 0, 0, 1);
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 1);
+            transition: .2s;
+            padding: 15px 20px 10px;
+        }
+    }
 
     &__nav {
         display: grid;
@@ -60,7 +85,7 @@
         @include mQ(500px) {
             margin-top: 30px;
         }
-        
+
     }
 
     &__list--active {
@@ -99,7 +124,7 @@
 
 .box1 {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 289px;
     margin-left: 3%;
     margin-right: 3%;
 
@@ -168,6 +193,7 @@
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             margin: 70px auto;
         }
+
         @include mQ(428px) {
             grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
             margin: 70px auto;
@@ -212,6 +238,7 @@
         @include mQ(540px) {
             width: 110px;
         }
+
         @include mQ(428px) {
             width: 70px;
         }
@@ -243,6 +270,7 @@
         @include mQ(540px) {
             width: 130px;
         }
+
         @include mQ(428px) {
             width: 90px;
         }
@@ -262,6 +290,7 @@
     @include mQ(700px) {
         grid-template-columns: 1fr 1fr;
     }
+
     @include mQ(428px) {
         text-align: center;
     }
@@ -365,14 +394,15 @@
         grid-gap: 40px;
         text-align: center;
     }
+
     @include mQ(460px) {
         grid-template-areas:
-        "title"
-        "mobile"
-        "speakers"
-        "headphones"
-        "activity" 
-        "cds";
+            "title"
+            "mobile"
+            "speakers"
+            "headphones"
+            "activity"
+            "cds";
     }
 
     &__title {
@@ -380,6 +410,7 @@
         font-size: $heading__font-size--x-large;
         color: $primary__color;
         margin: 130px auto;
+
         @include mQ(600px) {
             margin-bottom: 40px;
             font-size: $heading__font-size--large;
@@ -439,24 +470,29 @@
             height: 154px;
             bottom: -13%;
         }
+
         @include mQ(550px) {
             width: 469px;
             height: 154px;
             bottom: -13%;
             left: -45%;
         }
+
         @include mQ(460px) {
             width: 402px;
             left: -9%;
         }
+
         @include mQ(412px) {
             width: 402px;
             left: -15%;
         }
+
         @include mQ(358px) {
             width: 355px;
             left: -12%;
         }
+
         @include mQ(330px) {
             left: -18%;
         }
@@ -485,9 +521,11 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     align-items: center;
     grid-gap: 150px;
+
     @include mQ(1300px) {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     }
+
     @include mQ(1200px) {
         grid-template-columns: 1fr;
         grid-auto-rows: repeat(2, 1fr);
@@ -498,6 +536,7 @@
     &__power {
         grid-column: 1/3;
         margin-left: 20%;
+
         @include mQ(1200px) {
             text-align: center;
             margin: 5%;
@@ -507,6 +546,7 @@
 
     &__graphic {
         grid-column: 3/-1;
+
         @include mQ(1200px) {
             grid-column: 1/-1;
         }
@@ -516,6 +556,7 @@
         font-size: $heading__font-size--x-large;
         color: $primary__color;
         margin: 50px auto;
+
         @include mQ(600px) {
             padding-bottom: 20px;
             border-bottom: 2px solid rgba(255, 51, 52, .7);
@@ -527,6 +568,7 @@
         font-size: $base__font-size;
         line-height: 36px;
     }
+
     &__image {
         width: 100%;
     }
@@ -550,14 +592,16 @@
         width: 60%;
         margin: 0 auto;
         text-align: center;
+
         @include mQ(600px) {
             font-size: $heading__font-size--medium - 0.5em;
         }
+
         @include mQ(366px) {
             font-size: $heading__font-size--medium - 0.6em;
             width: 80%;
+        }
     }
-}
 
     &__comment--box {
         padding: 80px 0px 80px;
@@ -582,6 +626,7 @@
         color: $primary__color;
         margin-top: 50px;
         margin-bottom: 50px;
+
         @include mQ(650px) {
             font-size: $heading__font-size--large - 0.3em;
             margin: 0px 2%;
@@ -595,9 +640,11 @@
         line-height: 36px;
         width: 40%;
         margin: 0 auto 50px;
+
         @include mQ(850px) {
             width: 60%;
         }
+
         @include mQ(650px) {
             width: 80%;
         }
@@ -633,6 +680,7 @@
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
+
         @include mQ(950px) {
             width: 80%;
             padding-bottom: 10px;

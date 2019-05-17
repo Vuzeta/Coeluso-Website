@@ -10,6 +10,7 @@ import {
 import {
     showNav
 } from "./showNavbar.js"
+import jump from './jump.js'
 
 import "./../scss/main.scss" //webpack sass
 
@@ -23,3 +24,13 @@ Elements.hamburger.addEventListener('click', function () {
     showNav(Elements.headerLinks);
 }, false);
 Elements.copyYear.textContent = new Date().getFullYear(); // copy current year
+
+[...Elements.navigationLinks].forEach(el => {
+    el.addEventListener('click', function (e) {
+        let link = e.target.getAttribute('href');
+        jump(link, {
+            offset: -150,
+        })
+        // jump(link)
+    })
+})

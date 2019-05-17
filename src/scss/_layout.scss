@@ -375,6 +375,7 @@
     }
 
     @include mQ(1375px) {
+        text-align: center;
         grid-template-areas:
             "title title title title title title"
             "speakers speakers speakers headphones headphones headphones"
@@ -678,12 +679,15 @@
 
     &__links {
         display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+        justify-content: center;
 
         @include mQ(950px) {
             width: 80%;
             padding-bottom: 10px;
+        }
+
+        @include mQ(390px) {
+            flex-direction: column;
         }
     }
 

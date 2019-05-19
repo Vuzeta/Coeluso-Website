@@ -25,12 +25,11 @@ Elements.hamburger.addEventListener('click', function () {
 }, false);
 Elements.copyYear.textContent = new Date().getFullYear(); // copy current year
 
-[...Elements.navigationLinks].forEach(el => {
+[...Elements.navigationLinks].forEach(el => {       //function jump when link on navbar is clicked
     el.addEventListener('click', function (e) {
         let link = e.target.getAttribute('href');
         jump(link, {
             offset: -150,
         })
-        // jump(link)
     })
 })
